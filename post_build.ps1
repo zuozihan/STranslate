@@ -1,4 +1,4 @@
-# 从命令行参数获取版本号,如果未提供则使用默认值
+﻿# 从命令行参数获取版本号,如果未提供则使用默认值
 param(
     [string]$Version = "2.0.0",
     [string]$RepoUrl = "https://github.com/STranslate/STranslate"
@@ -85,6 +85,7 @@ $PortableZipPath = Join-Path $OutputPath "STranslate-win-Portable.zip"
 if (Test-Path $PortableZipPath) {
     try {
         # 加载 .NET 压缩程序集
+        Add-Type -AssemblyName System.IO.Compression
         Add-Type -AssemblyName System.IO.Compression.FileSystem
 
         # 以更新模式打开 ZIP 文件

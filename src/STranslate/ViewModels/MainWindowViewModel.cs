@@ -2873,7 +2873,6 @@ public partial class MainWindowViewModel : ObservableObject, IDisposable
             case CrosswordFetchFailedFallbackTarget.InputTranslate:
             default:
                 InputClear();
-                _snackbar.ShowWarning(_i18n.GetTranslation("CrosswordTranslateFetchFailed"), 3000);
                 break;
         }
     }
