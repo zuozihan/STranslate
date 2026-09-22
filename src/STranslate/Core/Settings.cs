@@ -238,6 +238,11 @@ public partial class Settings : ObservableObject
     /// </summary>
     [ObservableProperty] public partial CrosswordFetchFailedFallbackTarget CrosswordFetchFailedFallbackTarget { get; set; } = CrosswordFetchFailedFallbackTarget.InputTranslate;
 
+    /// <summary>
+    /// 划词取词失败回退到输入翻译或主界面时是否显示提示。
+    /// </summary>
+    [ObservableProperty] public partial bool ShowCrosswordFetchFailedPrompt { get; set; } = true;
+
     [ObservableProperty] public partial ImageQuality ImageQuality { get; set; } = ImageQuality.Medium;
 
     #region Layout Analysis

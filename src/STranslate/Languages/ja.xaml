@@ -86,6 +86,8 @@
     <sys:String x:Key="General_SelectedTextFetchTimeoutPlaceholder">500</sys:String>
     <sys:String x:Key="General_CrosswordFetchFailedFallbackTarget">選択テキスト取得失敗時の戻り先</sys:String>
     <sys:String x:Key="General_CrosswordFetchFailedFallbackTargetDescription">選択テキストの取得に失敗したとき、入力翻訳を開くか、メイン画面を表示するか、トレイ通知のみを送るかを選択します。</sys:String>
+    <sys:String x:Key="General_ShowCrosswordFetchFailedPrompt">選択テキスト取得失敗の通知</sys:String>
+    <sys:String x:Key="General_ShowCrosswordFetchFailedPromptDescription">選択テキストの取得に失敗して入力翻訳またはメイン画面に戻る際、通知メッセージを表示するかどうか。</sys:String>
     <sys:String x:Key="General_ImageQuality">画質</sys:String>
     <sys:String x:Key="General_ImageQualityDescription">画像処理時の画質調整。オンラインOCRサービスによっては画像サイズが制限される場合があります。</sys:String>
     <sys:String x:Key="General_DoubleClickTrayFunction">トレイアイコンのダブルクリック機能</sys:String>

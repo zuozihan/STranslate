@@ -89,6 +89,8 @@
     <sys:String x:Key="General_SelectedTextFetchTimeoutPlaceholder">500</sys:String>
     <sys:String x:Key="General_CrosswordFetchFailedFallbackTarget">劃詞取詞失敗回退目標</sys:String>
     <sys:String x:Key="General_CrosswordFetchFailedFallbackTargetDescription">劃詞取詞失敗後，選擇輸入翻譯、顯示主介面或僅傳送系統匣通知。</sys:String>
+    <sys:String x:Key="General_ShowCrosswordFetchFailedPrompt">劃詞取詞失敗提示</sys:String>
+    <sys:String x:Key="General_ShowCrosswordFetchFailedPromptDescription">劃詞取詞失敗回退到輸入翻譯或主介面時，是否顯示提示訊息。</sys:String>
     <sys:String x:Key="General_ImageQuality">圖片品質</sys:String>
     <sys:String x:Key="General_ImageQualityDescription">處理圖片時調整品質，線上OCR服務可能會限制圖片大小。</sys:String>
     <sys:String x:Key="General_DoubleClickTrayFunction">雙擊托盤功能</sys:String>

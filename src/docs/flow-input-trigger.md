@@ -26,7 +26,7 @@
 - `STranslate/ViewModels/MainWindowViewModel.cs`
   - `ExecuteTranslate()` / `InputClear()` / `Show()`：完成文本入口收敛、窗口显示与统一置前。
 - `STranslate/Core/Settings.cs`
-  - `SelectedTextFetchTimeoutMs`、`TextSeparatorHandleType`、`TextSeparatorHandleScopes`、`CrosswordFetchFailedFallbackTarget`。
+  - `SelectedTextFetchTimeoutMs`、`TextSeparatorHandleType`、`TextSeparatorHandleScopes`、`CrosswordFetchFailedFallbackTarget`、`ShowCrosswordFetchFailedPrompt`。
 - `STranslate/Views/MainWindow.xaml`
   - `Window.InputBindings`：软件内热键（设置、历史、置顶、自动翻译等）。
   - 输入区显隐绑定：使用 `IsInputActuallyHidden` / `IsInputBoxVisible` / `IsLanguageSelectControlVisible`，避免输入翻译入口被持久隐藏设置阻断。
@@ -83,8 +83,8 @@
    - `SilentOcr`：静默 OCR 写入剪贴板结果。
 5. 划词翻译取词失败时按 `CrosswordFetchFailedFallbackTarget` 分支：
    - 划词翻译调用 `GetTextAsync(showFailureFeedback: false)`，避免共用取词方法提前显示主窗口；失败反馈统一由 `HandleCrosswordFetchFailed()` 处理。
-   - `InputTranslate`：清空输入并显示主窗口，回退到输入翻译；输入框会临时显示，不改写隐藏输入框设置。
-   - `ShowWindow`：仅显示主窗口，保留当前输入和结果。
+   - `InputTranslate`：清空输入并显示主窗口，回退到输入翻译；输入框会临时显示，不改写隐藏输入框设置（受 `ShowCrosswordFetchFailedPrompt` 控制是否弹出提示）。
+   - `ShowWindow`：仅显示主窗口，保留当前输入和结果（受 `ShowCrosswordFetchFailedPrompt` 控制是否弹出提示）。
    - `NotifyOnly`：仅发送托盘通知，不显示或激活主窗口，保留当前输入和结果。
 
 ### 触发失败的通知策略
@@ -121,6 +121,7 @@
   - `TextSeparatorHandleType`
   - `TextSeparatorHandleScopes`
   - `CrosswordFetchFailedFallbackTarget`
+  - `ShowCrosswordFetchFailedPrompt`
   - `IsMouseSelectionTranslationEnabled`
   - `IsMouseSelectionIconEnabled`
   - `HideInput`、`HideInputWithLangSelectControl`

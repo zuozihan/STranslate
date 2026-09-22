@@ -86,6 +86,8 @@
     <sys:String x:Key="General_SelectedTextFetchTimeoutPlaceholder">500</sys:String>
     <sys:String x:Key="General_CrosswordFetchFailedFallbackTarget">드래그 번역 실패 시 복귀 대상</sys:String>
     <sys:String x:Key="General_CrosswordFetchFailedFallbackTargetDescription">선택한 텍스트를 가져오지 못했을 때 입력 번역 열기, 메인 창 표시 또는 트레이 알림만 보내기 중에서 선택합니다.</sys:String>
+    <sys:String x:Key="General_ShowCrosswordFetchFailedPrompt">드래그 번역 실패 시 알림</sys:String>
+    <sys:String x:Key="General_ShowCrosswordFetchFailedPromptDescription">선택한 텍스트를 가져오지 못해 입력 번역이나 메인 창으로 복귀할 때 안내 메시지를 표시할지 여부입니다.</sys:String>
     <sys:String x:Key="General_ImageQuality">이미지 품질</sys:String>
     <sys:String x:Key="General_ImageQualityDescription">이미지 처리 시 품질을 조정합니다. 온라인 OCR 서비스는 이미지 크기를 제한할 수 있습니다.</sys:String>
     <sys:String x:Key="General_DoubleClickTrayFunction">트레이 아이콘 더블 클릭 기능</sys:String>

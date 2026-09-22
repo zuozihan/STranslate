@@ -89,6 +89,8 @@
     <sys:String x:Key="General_SelectedTextFetchTimeoutPlaceholder">500</sys:String>
     <sys:String x:Key="General_CrosswordFetchFailedFallbackTarget">Word Selection Failure Fallback</sys:String>
     <sys:String x:Key="General_CrosswordFetchFailedFallbackTargetDescription">Choose whether to open input translation, show the main window, or only send a tray notification when selected text capture fails.</sys:String>
+    <sys:String x:Key="General_ShowCrosswordFetchFailedPrompt">Prompt on Word Selection Failure</sys:String>
+    <sys:String x:Key="General_ShowCrosswordFetchFailedPromptDescription">Whether to display a prompt when word selection fails and falls back to input translation or the main window.</sys:String>
     <sys:String x:Key="General_ImageQuality">Image Quality</sys:String>
     <sys:String x:Key="General_ImageQualityDescription">Adjust the quality when processing images. Online OCR services may limit image size.</sys:String>
     <sys:String x:Key="General_DoubleClickTrayFunction">Double-Click Tray Function</sys:String>

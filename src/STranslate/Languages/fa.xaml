@@ -90,6 +90,8 @@
     <sys:String x:Key="General_SelectedTextFetchTimeoutPlaceholder">500</sys:String>
     <sys:String x:Key="General_CrosswordFetchFailedFallbackTarget">جایگزین عدم موفقیت در دریافت متن انتخابی</sys:String>
     <sys:String x:Key="General_CrosswordFetchFailedFallbackTargetDescription">انتخاب کنید در صورت ناموفق بودن دریافت متن انتخاب‌شده، ترجمه ورودی باز شود، پنجره اصلی نمایش داده شود یا فقط اعلان سینی سیستم ارسال شود.</sys:String>
+    <sys:String x:Key="General_ShowCrosswordFetchFailedPrompt">اعلان عدم موفقیت در دریافت متن</sys:String>
+    <sys:String x:Key="General_ShowCrosswordFetchFailedPromptDescription">آیا هنگام عدم موفقیت در دریافت متن و بازگشت به ترجمه ورودی یا پنجره اصلی، پیام اعلان نمایش داده شود یا خیر.</sys:String>
     <sys:String x:Key="General_ImageQuality">کیفیت تصویر</sys:String>
     <sys:String x:Key="General_ImageQualityDescription">تنظیم کیفیت هنگام پردازش تصاویر. سرویس‌های آنلاین OCR ممکن است اندازه تصویر را محدود کنند.</sys:String>
     <sys:String x:Key="General_DoubleClickTrayFunction">عملکرد دوبار کلیک روی آیکون سینی</sys:String>

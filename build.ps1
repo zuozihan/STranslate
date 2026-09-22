@@ -20,18 +20,15 @@ if (Test-Path $asmInfo) {
     # 读取文件内容
     $content = Get-Content $asmInfo -Raw
 
-    # 需要替换的行 —— 直接按正则匹配三种属性
-    $patterns = @{
-        'AssemblyVersion'              = 'AssemblyVersion\("[^"]+"\)'
-        'AssemblyFileVersion'          = 'AssemblyFileVersion\("[^"]+"\)'
-        'AssemblyInformationalVersion' = 'AssemblyInformationalVersion\("[^"]+"\)'
+    # 提取纯数字版本用于 AssemblyVersion 和 AssemblyFileVersion
+    $numericVersion = ($CleanVersion -replace '-.*$', '')
+    if ($numericVersion -notmatch '^\d+(\.\d+){1,3}$') {
+        $numericVersion = "2.0.0"
     }
 
-    foreach ($key in $patterns.Keys) {
-        $pattern = $patterns[$key]
-        $replacement = "$key(`"$CleanVersion`")"
-        $content = [regex]::Replace($content, $pattern, $replacement)
-    }
+    $content = [regex]::Replace($content, 'AssemblyVersion\("[^"]+"\)', "AssemblyVersion(`"$numericVersion`")")
+    $content = [regex]::Replace($content, 'AssemblyFileVersion\("[^"]+"\)', "AssemblyFileVersion(`"$numericVersion`")")
+    $content = [regex]::Replace($content, 'AssemblyInformationalVersion\("[^"]+"\)', "AssemblyInformationalVersion(`"$CleanVersion`")")
 
     # 写回文件
     Set-Content $asmInfo $content -Encoding UTF8

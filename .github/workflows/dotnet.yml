@@ -11,6 +11,14 @@ on:
   push:
     tags:
       - "*" # Push events to matching *, i.e. 1.0, 20.15.10
+    branches:
+      - main
+  workflow_dispatch:
+    inputs:
+      version:
+        description: '发布/打包版本号 (留空则自动推算)'
+        required: false
+        default: ''
 
 jobs:
   build:
@@ -18,10 +26,12 @@ jobs:
 
     steps:
     - name: Checkout
-      uses: actions/checkout@v6
+      uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
 
     - name: Setup .NET
-      uses: actions/setup-dotnet@v5
+      uses: actions/setup-dotnet@v4
       with:
         dotnet-version: '10.0.x'
 
@@ -31,11 +41,43 @@ jobs:
     - name: Build and Pack
       shell: pwsh
       env:
-        VERSION: ${{ github.ref_name }}
+        INPUT_VERSION: ${{ github.event.inputs.version }}
         REPO_URL: ${{ github.server_url }}/${{ github.repository }}
       run: |
-        .\build.ps1 $env:VERSION
-        .\post_build.ps1 -Version $env:VERSION -RepoUrl $env:REPO_URL
+        $ver = $env:INPUT_VERSION
+        if ([string]::IsNullOrWhiteSpace($ver)) {
+            if ($env:GITHUB_REF -like "refs/tags/*") {
+                $ver = $env:GITHUB_REF_NAME
+            }
+        }
+        if ([string]::IsNullOrWhiteSpace($ver) -or $ver -eq "main") {
+            try {
+                $latest = (Invoke-RestMethod -Uri "https://api.github.com/repos/STranslate/STranslate/releases/latest" -Headers @{ "User-Agent" = "STranslate-CI" }).tag_name -replace '^v', ''
+                if ($latest -match '^\d+\.\d+\.\d+') {
+                    $parts = $latest.Split('.')
+                    $parts[-1] = [int]$parts[-1] + 1
+                    $ver = ($parts -join '.')
+                } else {
+                    $ver = "2.0.11"
+                }
+            } catch {
+                $ver = "2.0.11"
+            }
+        }
+        $CleanVersion = $ver -replace '^v', ''
+        Write-Host "Resolved Version for Packaging: $CleanVersion" -ForegroundColor Green
+        "PACKAGE_VERSION=$CleanVersion" | Out-File -FilePath $env:GITHUB_ENV -Append -Encoding utf8
+
+        .\build.ps1 -Version $CleanVersion
+        .\post_build.ps1 -Version $CleanVersion -RepoUrl $env:REPO_URL
+
+    - name: Upload Artifacts
+      uses: actions/upload-artifact@v4
+      with:
+        name: STranslate-win-${{ env.PACKAGE_VERSION }}
+        path: |
+          publish/*
+        if-no-files-found: error
 
     - name: Release
       uses: softprops/action-gh-release@v2

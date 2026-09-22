@@ -89,6 +89,8 @@
     <sys:String x:Key="General_SelectedTextFetchTimeoutPlaceholder">500</sys:String>
     <sys:String x:Key="General_CrosswordFetchFailedFallbackTarget">Якщо не вдалося отримати виділений текст</sys:String>
     <sys:String x:Key="General_CrosswordFetchFailedFallbackTargetDescription">Виберіть, що робити, якщо отримати виділений текст не вдалося: перейти до перекладу з поля введення чи лише показати головне вікно.</sys:String>
+    <sys:String x:Key="General_ShowCrosswordFetchFailedPrompt">Сповіщення при помилці отримання тексту</sys:String>
+    <sys:String x:Key="General_ShowCrosswordFetchFailedPromptDescription">Чи показувати повідомлення, якщо отримати виділений текст не вдалося і виконано перехід до поля введення або головного вікна.</sys:String>
     <sys:String x:Key="General_ImageQuality">Якість зображення</sys:String>
     <sys:String x:Key="General_ImageQualityDescription">Якість обробки зображень. Онлайн-сервіси розпізнавання тексту можуть обмежувати розмір зображення.</sys:String>
     <sys:String x:Key="General_DoubleClickTrayFunction">Подвійне клацання по значку в треї</sys:String>

@@ -2868,11 +2868,18 @@ public partial class MainWindowViewModel : ObservableObject, IDisposable
                 break;
             case CrosswordFetchFailedFallbackTarget.ShowWindow:
                 Show();
-                _snackbar.ShowWarning(_i18n.GetTranslation("CrosswordTranslateFetchFailedShowWindow"), 3000);
+                if (Settings.ShowCrosswordFetchFailedPrompt)
+                {
+                    _snackbar.ShowWarning(_i18n.GetTranslation("CrosswordTranslateFetchFailedShowWindow"), 3000);
+                }
                 break;
             case CrosswordFetchFailedFallbackTarget.InputTranslate:
             default:
                 InputClear();
+                if (Settings.ShowCrosswordFetchFailedPrompt)
+                {
+                    _snackbar.ShowWarning(_i18n.GetTranslation("CrosswordTranslateFetchFailed"), 3000);
+                }
                 break;
         }
     }
