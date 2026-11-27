@@ -11,6 +11,8 @@ PeekMessage
 GetCursorInfo
 LoadCursor
 VIRTUAL_KEY
+SendInput
+MapVirtualKey
 
 KBDLLHOOKSTRUCT
 MSLLHOOKSTRUCT
@@ -94,3 +96,4 @@ CreateRectRgn
 CreateRoundRectRgn
 SetWindowRgn
 DWM_TNP_*
+SetLayeredWindowAttributes

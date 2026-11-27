@@ -8,8 +8,35 @@ using STranslate.Helpers;
 
 namespace STranslate.Tests;
 
+[Collection("WPF UI")]
 public class TopEdgeAutoHideTests
 {
+    [Fact]
+    public void ShowAnimationDefersDockingUntilItReleasesTheWindow()
+    {
+        RunOnSta(() =>
+        {
+            var window = CreateWindow();
+            var showing = true;
+            using var controller = new TopEdgeAutoHideController(window, () => true, isShowing: () => showing);
+            try
+            {
+                controller.Update();
+                Assert.False(controller.IsDocked);
+                Assert.False(window.Topmost);
+                showing = false;
+                controller.Update();
+                Assert.True(controller.IsDocked);
+                window.Visibility = Visibility.Collapsed;
+                showing = true;
+                controller.Update();
+                Assert.False(controller.IsDocked);
+                Assert.False(window.IsVisible);
+            }
+            finally { window.Close(); }
+        });
+    }
+
     [Theory]
     [InlineData(iNKORE.UI.WPF.Modern.ElementTheme.Default)]
     [InlineData(iNKORE.UI.WPF.Modern.ElementTheme.Light)]
@@ -418,21 +445,7 @@ public class TopEdgeAutoHideTests
         return window;
     }
 
-    // 主题库缓存包含 Dispatcher 对象，所有窗口测试共用同一个 UI 线程。
-    private static readonly Lazy<Dispatcher> TestDispatcher = new(() =>
-    {
-        var ready = new TaskCompletionSource<Dispatcher>();
-        var thread = new Thread(() =>
-        {
-            ready.SetResult(Dispatcher.CurrentDispatcher);
-            Dispatcher.Run();
-        }) { IsBackground = true };
-        thread.SetApartmentState(ApartmentState.STA);
-        thread.Start();
-        return ready.Task.GetAwaiter().GetResult();
-    });
-
-    private static void RunOnSta(Action action) => TestDispatcher.Value.Invoke(action);
+    private static void RunOnSta(Action action) => WpfUiCollection.Run(action);
 
     public sealed class TopmostSource
     {
